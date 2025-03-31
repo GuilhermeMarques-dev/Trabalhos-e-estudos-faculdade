@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+
+int main()
+{
+    setlocale(LC_ALL, "Portuguese");
+    int opcao, combustivel = 1000;
+    printf("===SISTEMA DE MISSÃO ESPACIAL===\n");
+    if (autenticar()!= 1)
+    {
+        return 0;
+    }
+    do
+    {
+        printf("\n---MENU ESPACIAL---\n");
+        printf("1. Simular queima de combustível\n");
+        printf("2. Sair\n");
+        printf("Escolha uma opção :\n");
+        scanf("%d", &opcao);
+
+
+        switch(opcao)
+        {
+        case 1:
+            simularqueima(combustivel);
+            break;
+        case 2:
+            printf("Encerrando sistema.\n");
+            break;
+
+        default:
+            printf("Opção inválida !\n");
+        }
+
+
+    }
+    while (opcao >= 1 && opcao <= 2);
+}//fim do Main
+
+//-------------------ETAPA1 - AUTENTICAR ---------
+int autenticar()
+{
+    int senha, tentativas = 0;
+    while(tentativas < 3)
+    {
+        printf("Digite a sua senha:\n");
+        scanf("%d", &senha);
+        if (senha == 2025)
+        {
+            printf("Acesso ok\n");
+            return 1;
+        }
+        else
+        {
+            printf("Senha incorreta !\n");
+            tentativas++;
+        }
+    }
+    printf("Acesso negado. Sistema encerrado\n");
+    return -1;
+}//fim do autenticar
+void simularqueima(int combustivel)
+{
+    while (combustivel > 0)
+    {
+        printf("Combustível restante : %d litros\n", combustivel);
+        combustivel -=50;
+        if (combustivel == 500)
+        {
+            printf("Atingindo a atmosfera superior\n");
+        }
+        if (combustivel == 100)
+        {
+            printf("Quase em órbita\n");
+        }
+    }
+    printf("órbita atingida\n");
+    //---------------fim simularqueima------------------------------
+
+}
+
